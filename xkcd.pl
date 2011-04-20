@@ -6,7 +6,10 @@ use LWP::Simple;
 
 #Check both ./comics/ and xkcd.html are writeable. 
 system("mkdir comics");
-system("touch xkcd.html");
+
+if(!-e "xkcd.html") {
+    system("touch xkcd.html");
+}
 
 downloadImages();
 
@@ -32,6 +35,9 @@ sub downloadImages {
     my $m = WWW::Mechanize->new();
 
     my $comicNumber=getExistingComics();
+    if($comicNumber==0) {
+        $comicNumber++;
+    }
 
     for(; $comicNumber<=$totalComics; $comicNumber++) {
         
