@@ -4,14 +4,27 @@ use warnings;
 use WWW::Mechanize;
 use LWP::Simple;
 
-#Check both ./comics/ and xkcd.html are writeable. 
-system("mkdir comics");
-
-if(!-e "xkcd.html") {
-    system("touch xkcd.html");
-}
-
+prepareStructure();
 downloadImages();
+
+sub prepareStructure {
+
+    if(!-d "comics") {
+        system("mkdir comics");
+
+        if(!-W "comics") {
+            die "comics/ needs to be writable."
+        }
+    }
+
+    if(!-e "xkcd.html") {
+        system("touch xkcd.html");
+
+        if(!-W "xkcd.html") {
+            die "xkcd.html needs to be writable."
+        }
+    }
+}
 
 sub generateHTML {
 
@@ -44,7 +57,6 @@ sub downloadImages {
         if($comicNumber==404) {
             $comicNumber++;
         }
-
 
         $m->get("http://xkcd.com/$comicNumber");
 
