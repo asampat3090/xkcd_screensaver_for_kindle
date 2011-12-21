@@ -1,10 +1,10 @@
 import Image, ImageDraw, ImageFont, urllib, re, os, math
 
-destinationFolder = "/Users/asampat3090/Desktop/Programming/xkcd" # Full path to destination folder. Needs to exist
+destinationFolder = "/Users/asampat3090/Desktop/Programming/xkcd/Images" # Full path to destination folder. Needs to exist
 # titleFile = open("/Users/asampat3090/Desktop/xkcd/TITLES",'w') # Full path of the file to store the titles in (doesn't have to exist. Will be overwritten if it does)
 pattern = re.compile("img.*src=.*title=.*alt=.*")
 
-nrComics = 4 # Number of comics to retrieve
+nrComics = 449 # Number of comics to retrieve
 for i in xrange(1, nrComics + 1):
     site = urllib.urlopen("http://www.xkcd.com/" + str(i) + "/") # Gets the site
     contentLine = None
@@ -57,13 +57,13 @@ for i in xrange(1, nrComics + 1):
         if temp_1.size[0]*new_to_old_ratio>600:
             temp_2=temp_1.resize((600,int(math.floor(float(temp_1.size[1]*600)/float(temp_1.size[0])))))
             # now paste this temp2 to the 600x800 canvas
-            canvas_img.paste(temp_2,(0,int(float(775-float(temp_1.size[1]*600)/float(temp_1.size[0]))/float(2))))
+            canvas_img.paste(temp_2,(0,25+int(float(775-float(temp_1.size[1]*600)/float(temp_1.size[0]))/float(2))))
             print 1
         else:
             temp_2=temp_1.resize((int(math.floor(float(temp_1.size[0])*new_to_old_ratio)),775))
             # temp_2.show()
             # now paste this temp2 to the 600x800 canvas
-            canvas_img.paste(temp_2,(int(float(600-float(temp_1.size[0])*new_to_old_ratio)/float(2)),0)) 
+            canvas_img.paste(temp_2,(int(float(600-float(temp_1.size[0])*new_to_old_ratio)/float(2)),25)) 
             print 2
          
     else:
@@ -75,7 +75,7 @@ for i in xrange(1, nrComics + 1):
             temp_2=xkcd_img.resize((int(math.floor(float(xkcd_img.size[0])*float(775))/float(xkcd_img.size[1])),775))
             #temp_2.show() 
             # now paste this temp2 to the 600x800 canvas
-            canvas_img.paste(temp_2,(int(float(600-float(xkcd_img.size[0]*775)/float(xkcd_img.size[1]))/float(2)),0))
+            canvas_img.paste(temp_2,(int(float(600-float(xkcd_img.size[0]*775)/float(xkcd_img.size[1]))/float(2)),25))
             print 3
         else:
             temp_2=xkcd_img.resize((600,int(math.floor(float(xkcd_img.size[1])*new_to_old_ratio))))
@@ -90,7 +90,7 @@ for i in xrange(1, nrComics + 1):
     
     # Add caption to image
     
-    pathz = "/Users/asampat3090/Desktop/Programming/xkcd/" + img_full_name
+    pathz = "/Users/asampat3090/Desktop/Programming/xkcd/Images" + img_full_name
     if os.path.exists(pathz):
         namez = img_full_name[:-4]
         d = ImageDraw.Draw(canvas_img)
