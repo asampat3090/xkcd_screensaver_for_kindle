@@ -63,7 +63,7 @@ for i in xrange(1, nrComics + 1):
             temp_2=temp_1.resize((int(math.floor(float(temp_1.size[0])*new_to_old_ratio)),775))
             # temp_2.show()
             # now paste this temp2 to the 600x800 canvas
-            canvas_img.paste(temp_2,(int(float(600-float(temp_1.size[0])*new_to_old_ratio)/float(2)),0))
+            canvas_img.paste(temp_2,(int(float(600-float(temp_1.size[0])*new_to_old_ratio)/float(2)),0)) 
             print 2
          
     else:
@@ -73,7 +73,7 @@ for i in xrange(1, nrComics + 1):
         if xkcd_img.size[1]*new_to_old_ratio>775:
     
             temp_2=xkcd_img.resize((int(math.floor(float(xkcd_img.size[0])*float(775))/float(xkcd_img.size[1])),775))
-            #temp_2.show()
+            #temp_2.show() 
             # now paste this temp2 to the 600x800 canvas
             canvas_img.paste(temp_2,(int(float(600-float(xkcd_img.size[0]*775)/float(xkcd_img.size[1]))/float(2)),0))
             print 3
@@ -83,7 +83,7 @@ for i in xrange(1, nrComics + 1):
             print new_to_old_ratio
             print temp_2.size
             # now paste this temp2 to the 600x800 canvas
-            canvas_img.paste(temp_2,(0,int(float(775-float(xkcd_img.size[1])*new_to_old_ratio)/float(2))))
+            canvas_img.paste(temp_2,(0,25+int(float(775-float(xkcd_img.size[1])*new_to_old_ratio)/float(2))))
             print 4
     
         
